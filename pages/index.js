@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 const API_URL = '/api/monika-chat';
 
 export default function Home() {
-  // تم حذف رموز ** من الرسالة الترحيبية لتجنب ظهورها
+  // تم تحديث الرسالة الترحيبية لتكون ودودة مع إيموجي
   const [messages, setMessages] = useState([
     { sender: 'monika', text: "Hello! I'm Monika, your AI life coach. What's one thing you'd like to unlock in your life today? ✨" },
   ]);
@@ -52,7 +52,6 @@ export default function Home() {
           sender: 'monika',
           text: (
             <>
-              { /* تم حذف ** حول Function Call Requested */ }
               Function Call Requested: `{name}`
               <pre style={{ backgroundColor: '#f5f5f5', padding: '10px', borderRadius: '5px', overflowX: 'auto' }}>
                 {formattedArgs}
@@ -79,101 +78,146 @@ export default function Home() {
   return (
     <div className="chat-container">
       <style jsx global>{`
+        /* GLOBAL STYLES */
         body {
-          font-family: Arial, sans-serif;
-          background-color: #f4f7f6;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          min-height: 100vh;
-          margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6; /* خلفية فاتحة وناعمة */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
         }
+        
+        /* CHAT CONTAINER */
         .chat-container {
             background: white;
             border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            width: 90%;
-            max-width: 600px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 650px; /* زيادة قليلة للعرض */
             display: flex;
             flex-direction: column;
-            padding: 20px;
+            padding: 25px;
         }
+
         h1 {
             text-align: center;
-            color: #4a90e2;
-            margin-bottom: 20px;
+            color: #4a90e2; /* أزرق هادئ */
+            margin-bottom: 25px;
+            font-size: 1.8em;
         }
+
+        /* CHAT AREA - منطقة الدردشة */
         .chat-area {
-            height: 400px;
+            height: 450px; /* زيادة ارتفاع المنطقة */
             overflow-y: auto;
-            padding: 10px;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            margin-bottom: 15px;
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            margin-bottom: 20px;
             display: flex;
             flex-direction: column;
+            gap: 10px;
         }
+        
+        /* SCROLLBAR STYLE (لجعل شريط التمرير أنظف) */
+        .chat-area::-webkit-scrollbar {
+          width: 8px;
+        }
+        .chat-area::-webkit-scrollbar-thumb {
+          background-color: #c9c9c9;
+          border-radius: 4px;
+        }
+
         .message-row {
             display: flex;
-            margin-bottom: 15px;
+            margin-bottom: 5px;
         }
+
         .message-row.user {
             justify-content: flex-end;
         }
+
         .message-row.monika {
             justify-content: flex-start;
         }
+
+        /* MESSAGE BUBBLES - فقاعات الدردشة */
         .message-bubble {
-            padding: 10px 15px;
+            padding: 12px 18px;
             border-radius: 20px;
-            max-width: 75%;
-            line-height: 1.5;
+            max-width: 80%;
+            line-height: 1.6;
             word-wrap: break-word;
+            font-size: 1em;
+            white-space: pre-wrap; /* يحافظ على تنسيق السطور الجديدة من Gemini */
         }
+
         .message-bubble.user {
-            background-color: #4a90e2;
+            background-color: #4a90e2; /* أزرق أساسي */
             color: white;
             border-bottom-right-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
+
         .message-bubble.monika {
-            background-color: #e6f3ff;
+            background-color: #e6f3ff; /* أزرق فاتح جداً */
             color: #333;
             border: 1px solid #d0e8ff;
             border-bottom-left-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
+
         .message-sender {
             font-weight: bold;
             margin-bottom: 5px;
             color: #2c3e50;
             text-transform: capitalize;
+            font-size: 0.9em;
         }
-        .message-row.user .message-sender {
-            color: white;
-        }
+        
+        .message-row.user .message-sender {
+            color: white; 
+        }
+
+        /* INPUT FORM - شريط الإدخال */
         .chat-input-form {
             display: flex;
             gap: 10px;
         }
+
         .chat-input-form input {
             flex-grow: 1;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 20px;
+            padding: 12px 18px;
+            border: 1px solid #e0e0e0;
+            border-radius: 25px;
             font-size: 16px;
+            transition: border-color 0.2s;
         }
+        
+        .chat-input-form input:focus {
+            border-color: #4a90e2;
+            outline: none;
+        }
+
         .chat-input-form button {
-            padding: 10px 20px;
+            padding: 12px 25px;
             background-color: #4a90e2;
             color: white;
             border: none;
-            border-radius: 20px;
+            border-radius: 25px;
             cursor: pointer;
             font-size: 16px;
+            font-weight: bold;
             transition: background-color 0.2s;
         }
+
         .chat-input-form button:hover:not(:disabled) {
             background-color: #357ab8;
         }
+
         .chat-input-form button:disabled {
             background-color: #cccccc;
             cursor: not-allowed;
@@ -216,7 +260,7 @@ export default function Home() {
           Send
         </button>
       </form>
-      <p style={{marginTop: '10px', fontSize: '0.8em', color: '#666'}}>
+      <p style={{marginTop: '15px', fontSize: '0.9em', color: '#666', textAlign: 'center'}}>
         Try asking: "I want to schedule a session next Tuesday about my career" or "I want to achieve a better work-life balance in 60 days."
       </p>
     </div>
