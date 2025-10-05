@@ -1,12 +1,12 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 
-// Path to the Next.js API Route we created: /api/monika-chat
+// Path to the Next.js API Route we just created: /api/monika-chat
 const API_URL = '/api/monika-chat';
 
 export default function Home() {
-  // تم تحديث الرسالة الترحيبية لتكون ودودة مع إيموجي
   const [messages, setMessages] = useState([
-    { sender: 'monika', text: "Hello! I'm Monika, your AI life coach. What's one thing you'd like to unlock in your life today? ✨" },
+    { sender: 'monika', text: "Hello! I'm Monika, your AI life coach. What's one thing you'd like to unlock in your life today?" },
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -52,7 +52,7 @@ export default function Home() {
           sender: 'monika',
           text: (
             <>
-              Function Call Requested: `{name}`
+              **Function Call Requested:** `{name}`
               <pre style={{ backgroundColor: '#f5f5f5', padding: '10px', borderRadius: '5px', overflowX: 'auto' }}>
                 {formattedArgs}
               </pre>
@@ -78,146 +78,101 @@ export default function Home() {
   return (
     <div className="chat-container">
       <style jsx global>{`
-        /* GLOBAL STYLES */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f7f6; /* خلفية فاتحة وناعمة */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
+          font-family: Arial, sans-serif;
+          background-color: #f4f7f6;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-height: 100vh;
+          margin: 0;
         }
-        
-        /* CHAT CONTAINER */
         .chat-container {
             background: white;
             border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 650px; /* زيادة قليلة للعرض */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
             display: flex;
             flex-direction: column;
-            padding: 25px;
+            padding: 20px;
         }
-
         h1 {
             text-align: center;
-            color: #4a90e2; /* أزرق هادئ */
-            margin-bottom: 25px;
-            font-size: 1.8em;
-        }
-
-        /* CHAT AREA - منطقة الدردشة */
-        .chat-area {
-            height: 450px; /* زيادة ارتفاع المنطقة */
-            overflow-y: auto;
-            padding: 15px;
-            border: 1px solid #e0e0e0;
-            border-radius: 10px;
+            color: #4a90e2;
             margin-bottom: 20px;
+        }
+        .chat-area {
+            height: 400px;
+            overflow-y: auto;
+            padding: 10px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            margin-bottom: 15px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
         }
-        
-        /* SCROLLBAR STYLE (لجعل شريط التمرير أنظف) */
-        .chat-area::-webkit-scrollbar {
-          width: 8px;
-        }
-        .chat-area::-webkit-scrollbar-thumb {
-          background-color: #c9c9c9;
-          border-radius: 4px;
-        }
-
         .message-row {
             display: flex;
-            margin-bottom: 5px;
+            margin-bottom: 15px;
         }
-
         .message-row.user {
             justify-content: flex-end;
         }
-
         .message-row.monika {
             justify-content: flex-start;
         }
-
-        /* MESSAGE BUBBLES - فقاعات الدردشة */
         .message-bubble {
-            padding: 12px 18px;
+            padding: 10px 15px;
             border-radius: 20px;
-            max-width: 80%;
-            line-height: 1.6;
+            max-width: 75%;
+            line-height: 1.5;
             word-wrap: break-word;
-            font-size: 1em;
-            white-space: pre-wrap; /* يحافظ على تنسيق السطور الجديدة من Gemini */
         }
-
         .message-bubble.user {
-            background-color: #4a90e2; /* أزرق أساسي */
+            background-color: #4a90e2;
             color: white;
             border-bottom-right-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
-
         .message-bubble.monika {
-            background-color: #e6f3ff; /* أزرق فاتح جداً */
+            background-color: #e6f3ff;
             color: #333;
             border: 1px solid #d0e8ff;
             border-bottom-left-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
-
         .message-sender {
             font-weight: bold;
             margin-bottom: 5px;
             color: #2c3e50;
             text-transform: capitalize;
-            font-size: 0.9em;
         }
-        
-        .message-row.user .message-sender {
-            color: white; 
-        }
-
-        /* INPUT FORM - شريط الإدخال */
+        .message-row.user .message-sender {
+            color: white;
+        }
         .chat-input-form {
             display: flex;
             gap: 10px;
         }
-
         .chat-input-form input {
             flex-grow: 1;
-            padding: 12px 18px;
-            border: 1px solid #e0e0e0;
-            border-radius: 25px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
             font-size: 16px;
-            transition: border-color 0.2s;
         }
-        
-        .chat-input-form input:focus {
-            border-color: #4a90e2;
-            outline: none;
-        }
-
         .chat-input-form button {
-            padding: 12px 25px;
+            padding: 10px 20px;
             background-color: #4a90e2;
             color: white;
             border: none;
-            border-radius: 25px;
+            border-radius: 20px;
             cursor: pointer;
             font-size: 16px;
-            font-weight: bold;
             transition: background-color 0.2s;
         }
-
         .chat-input-form button:hover:not(:disabled) {
             background-color: #357ab8;
         }
-
         .chat-input-form button:disabled {
             background-color: #cccccc;
             cursor: not-allowed;
@@ -230,7 +185,7 @@ export default function Home() {
           <div key={index} className={`message-row ${msg.sender}`}>
             <div className={`message-bubble ${msg.sender}`}>
               <div className="message-sender">
-                {msg.sender === 'monika' ? 'Monika' : 'You'}
+                **{msg.sender === 'monika' ? 'Monika' : 'You'}**
               </div>
               <div className="message-text">
                 {msg.isFunctionCall ? msg.text : msg.text}
@@ -241,7 +196,7 @@ export default function Home() {
         {isLoading && (
             <div className={`message-row monika`}>
                 <div className={`message-bubble monika`}>
-                    <div className="message-sender">Monika</div>
+                    <div className="message-sender">**Monika**</div>
                     <div className="message-text">...typing...</div>
                 </div>
             </div>
@@ -260,8 +215,8 @@ export default function Home() {
           Send
         </button>
       </form>
-      <p style={{marginTop: '15px', fontSize: '0.9em', color: '#666', textAlign: 'center'}}>
-        Try asking: "I want to schedule a session next Tuesday about my career" or "I want to achieve a better work-life balance in 60 days."
+      <p style={{marginTop: '10px', fontSize: '0.8em', color: '#666'}}>
+        **Try asking:** "I want to schedule a session next Tuesday about my career" or "I want to achieve a better work-life balance in 60 days."
       </p>
     </div>
   );
