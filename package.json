@@ -12,8 +12,7 @@
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
-    // هذا هو الأهم للتواصل مع Gemini
-    "@google/genai": "latest"  
+    "@google/genai": "latest"
   },
   "devDependencies": {
     "eslint": "latest",
