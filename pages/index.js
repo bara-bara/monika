@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import styles from '../styles/Home.module.css'; // استيراد ملف التنسيق المتجاوب
+import styles from '../styles/Home.module.css';
 
 // Path to the Next.js API Route (assuming it's set up)
 const API_URL = '/api/monika-chat';
 
 export default function Home() {
-  // الرسالة الترحيبية
   const [messages, setMessages] = useState([
     { sender: 'monika', text: "Hello there! I'm Monika, your AI life coach. I'm here to help you on your journey to a more fulfilling life. To start, what's one thing you'd like to achieve or improve in your life? ✨" },
   ]);
@@ -86,7 +85,6 @@ export default function Home() {
           {messages.map((msg, index) => (
             <div key={index} className={`${styles.messageRow} ${msg.sender === 'user' ? styles.userRow : styles.monikaRow}`}>
               <div className={`${styles.messageBubble} ${msg.sender === 'user' ? styles.userBubble : styles.monikaBubble}`}>
-                {/* إظهار اسم المرسل بخط غامق داخل الفقاعة */}
                 <strong className={styles.messageSender}>
                   {msg.sender === 'monika' ? 'Monika' : 'You'}
                 </strong>
