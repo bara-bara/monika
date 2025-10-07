@@ -1,7 +1,8 @@
-/* GLOBAL/PAGE WRAPPER: ضمان التناسق والخلفية الجميلة */
+/* GLOBAL/PAGE WRAPPER: خلفية متدرجة هادئة تناسب Life Coach */
 .pageWrapper {
     font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f0f3f8; /* خلفية سحابية هادئة جداً */
+    /* خلفية متدرجة هادئة */
+    background: linear-gradient(135deg, #e0f2fe 0%, #f0f3f8 100%); 
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -9,176 +10,171 @@
     padding: 20px;
 }
 
-/* CHAT CONTAINER: المظهر الاحترافي لشركة كبيرة */
+/* CHAT CONTAINER: المظهر الاحترافي والتناسق */
 .chatContainer {
     background: #ffffff;
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(17, 24, 39, 0.1);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.15); /* ظل أنيق وعميق */
     width: 100%;
-    max-width: 800px;
-    height: 90vh;
+    max-width: 650px; /* تصغير العرض قليلاً ليبدو كمركز للدردشة */
+    height: 85vh;
     display: flex;
     flex-direction: column;
-    padding: 30px;
+    padding: 25px;
 }
 
-/* HEADER: تحسين العنوان (اللون، الحجم، والتوسيط) */
+/* HEADER: العنوان الجذاب والواضح */
 .header {
     text-align: center;
-    color: #1e40af; /* أزرق غامق (براند) */
-    margin-bottom: 30px;
-    font-size: 2.2em; /* حجم مثالي */
+    color: #1e40af; 
+    margin-bottom: 25px;
+    font-size: 1.8em; /* حجم مناسب وأنيق */
     font-weight: 800;
-    letter-spacing: -0.5px; /* تباعد بسيط للحروف لمظهر أجمل */
-    border-bottom: 1px solid #e0e7ff;
-    padding-bottom: 15px;
+    letter-spacing: -0.5px;
+    border-bottom: 2px solid #e0e7ff;
+    padding-bottom: 12px;
 }
 .headerIcon {
-    font-size: 0.9em;
-    margin-left: 5px;
+    font-size: 1em;
+    margin-left: 8px;
 }
 
-/* CHAT AREA: منطقة الرسائل */
+/* CHAT AREA */
 .chatArea {
     flex-grow: 1;
     overflow-y: auto;
-    padding: 15px;
+    padding: 10px;
     margin-bottom: 15px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
 }
 
 /* SCROLLBAR STYLE */
-.chatArea::-webkit-scrollbar { width: 8px; }
-.chatArea::-webkit-scrollbar-thumb { background-color: #c0c7d0; border-radius: 4px; }
-.chatArea::-webkit-scrollbar-track { background: #f4f7f9; }
+.chatArea::-webkit-scrollbar { width: 6px; } /* تصغير حجم شريط التمرير */
+.chatArea::-webkit-scrollbar-thumb { background-color: #c0c7d0; border-radius: 3px; }
 
-/* MESSAGE ROWS & BUBBLES */
+/* MESSAGE BUBBLES: تصغير الفقاعات لتبدو مثل تطبيقات الدردشة */
 .messageRow { display: flex; }
 .userRow { justify-content: flex-end; }
 .monikaRow { justify-content: flex-start; }
 
 .messageBubble {
-    padding: 15px 20px;
-    border-radius: 12px;
-    max-width: 85%;
-    line-height: 1.6;
-    font-size: 1em;
-    white-space: pre-wrap;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    padding: 12px 16px; /* تصغير البادينج */
+    border-radius: 18px; /* استدارة أكبر */
+    max-width: 80%;
+    line-height: 1.5;
+    font-size: 0.95em; /* تصغير الخط قليلاً */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
 }
 
 .messageSender {
-    font-weight: 700;
-    font-size: 0.85em;
+    font-weight: 600;
+    font-size: 0.8em;
     display: block;
-    margin-bottom: 5px;
-    opacity: 0.8;
+    margin-bottom: 4px;
+    opacity: 0.9;
 }
 
 .userBubble {
-    background-color: #3b82f6;
+    background-color: #3b82f6; 
     color: white;
-    border-top-right-radius: 3px;
+    border-bottom-right-radius: 4px; /* زاوية مربعة جزئياً */
 }
-.userBubble .messageSender { color: #e0f2fe; }
 
 .monikaBubble {
-    background-color: #f7f9fc;
+    background-color: #f0f7ff; /* أبيض ناصع مع لمسة زرقاء خفيفة */
     color: #1f2937;
-    border: 1px solid #e5e7eb;
-    border-top-left-radius: 3px;
+    border: 1px solid #e0e7ff;
+    border-bottom-left-radius: 4px; 
 }
-.monikaBubble .messageSender { color: #1e40af; }
 
-.codeBlock {
-    background-color: #eef2ff; /* لون جديد لكتل الكود */
-    color: #4b5563;
-    padding: 10px;
-    border-radius: 6px;
-    margin-top: 10px;
-    overflow-x: auto;
-    border: 1px solid #d1d5db;
-}
-.hintText { color: #9ca3af; font-size: 0.85em; margin-top: 5px; }
-.typingIndicator { font-style: italic; color: #4f46e5; }
 
-/* INPUT FORM: التركيز على تناسق الأزرار والحقول */
+/* INPUT FORM: التناسق المثالي للعناصر الصغيرة */
 .chatInputForm {
     display: flex;
-    align-items: center; /* لمحاذاة العناصر عمودياً في الوسط */
-    gap: 10px;
+    align-items: center; 
+    gap: 8px; /* مسافة أصغر بين العناصر */
     padding-top: 15px;
     border-top: 1px solid #e5e7eb;
 }
 
 .chatInputForm input {
     flex-grow: 1;
-    padding: 14px 20px; /* تقليل البادينج قليلاً ليتناسب مع الزر */
-    height: 50px; /* تحديد ارتفاع ثابت للتناسق */
+    padding: 12px 20px;
+    height: 45px; /* ارتفاع ثابت وصغير */
     border: 1px solid #d1d5db;
-    border-radius: 25px; /* حواف أنعم */
+    border-radius: 25px; 
     font-size: 1em;
-    transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-.chatInputForm input:focus {
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
-    outline: none;
 }
 
 .sendButton {
-    padding: 14px 25px; /* مطابقة البادينج مع حقل الإدخال */
-    height: 50px; /* مطابقة الارتفاع */
+    /* تصميم دائري وزر صغير متناسق مع الحقل */
+    height: 45px; 
+    width: 45px; 
+    padding: 0;
     background-color: #3b82f6;
     color: white;
     border: none;
-    border-radius: 25px; /* حواف أنعم */
+    border-radius: 50%; /* زر دائري */
     cursor: pointer;
-    font-size: 1em;
+    font-size: 1.2em;
     font-weight: 600;
     transition: background-color 0.2s, transform 0.1s;
-    min-width: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
 .sendButton:hover:not(:disabled) { background-color: #2563eb; }
-.sendButton:active:not(:disabled) { transform: scale(0.98); }
+.sendButton:active:not(:disabled) { transform: scale(0.95); }
 .sendButton:disabled { background-color: #93c5fd; cursor: not-allowed; }
+
+/* إخفاء نص 'Send' وإظهار الأيقونة على الهاتف فقط (لتقليد واتساب) */
+.sendText { display: block; }
+.sendIcon { display: none; }
 
 .suggestionText {
     margin-top: 15px;
-    font-size: 0.9em;
+    font-size: 0.85em;
     color: #6b7280;
     text-align: center;
 }
 
-/* 📱 MOBILE RESPONSIVENESS: تحسين العرض على الهاتف */
+
+/* 📱 MOBILE RESPONSIVENESS: التجاوبية المثالية للهاتف */
 @media (max-width: 768px) {
+    .pageWrapper {
+        padding: 0;
+        align-items: flex-start;
+    }
     .chatContainer {
+        height: 100vh;
         border-radius: 0;
         box-shadow: none;
-        padding: 20px 15px;
-        height: 100vh;
+        padding: 15px 12px; /* حواف أصغر */
     }
     .header {
-        font-size: 2em;
-        margin-bottom: 20px;
+        font-size: 1.6em;
+        margin-bottom: 15px;
     }
-    .chatInputForm {
-        gap: 8px;
-        padding-top: 10px;
-    }
-    .chatInputForm input, .sendButton {
-        height: 45px; /* تقليل ارتفاع العناصر على الهاتف */
+    
+    /* جعل الزر دائرياً بالكامل على الهاتف وإخفاء النص */
+    .chatInputForm input {
+        height: 40px; /* تصغير الارتفاع أكثر على الهاتف */
         padding: 10px 15px;
-        font-size: 0.9em;
     }
+
     .sendButton {
-        min-width: 70px;
+        width: 40px; /* تصغير الزر ليتناسب */
+        height: 40px;
     }
-    .messageBubble {
-        max-width: 95%;
-        font-size: 0.95em;
+    .sendText {
+        display: none; /* إخفاء كلمة Send */
+    }
+    .sendIcon {
+        display: block; /* إظهار أيقونة السهم */
+        font-size: 1.2em;
+        transform: rotate(-45deg); /* تدوير السهم ليبدو كأنه إرسال */
     }
 }
