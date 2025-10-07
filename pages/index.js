@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import styles from '../styles/Home.module.css'; // استيراد ملف التنسيق الجديد
+import styles from '../styles/Home.module.css'; // استيراد ملف التنسيق المتجاوب
 
 // Path to the Next.js API Route (assuming it's set up)
 const API_URL = '/api/monika-chat';
@@ -7,7 +7,7 @@ const API_URL = '/api/monika-chat';
 export default function Home() {
   // الرسالة الترحيبية
   const [messages, setMessages] = useState([
-    { sender: 'monika', text: "Hello! I'm Monika, your AI life coach. What's one thing you'd like to unlock in your life today? ✨" },
+    { sender: 'monika', text: "Hello there! I'm Monika, your AI life coach. I'm here to help you on your journey to a more fulfilling life. To start, what's one thing you'd like to achieve or improve in your life? ✨" },
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -77,14 +77,16 @@ export default function Home() {
   };
 
   return (
-    <div className={styles.pageWrapper}> {/* Wrapper for full-page background */}
+    <div className={styles.pageWrapper}>
       <div className={styles.chatContainer}>
-        <h1 className={styles.header}>Monika AI Life Coach 🧘‍♀️</h1>
+        <h1 className={styles.header}>
+          Monika AI Life Coach <span className={styles.headerIcon}>🧘‍♀️</span>
+        </h1>
         <div className={styles.chatArea}>
           {messages.map((msg, index) => (
             <div key={index} className={`${styles.messageRow} ${msg.sender === 'user' ? styles.userRow : styles.monikaRow}`}>
               <div className={`${styles.messageBubble} ${msg.sender === 'user' ? styles.userBubble : styles.monikaBubble}`}>
-                {/* نستخدم "strong" لعرض نص المرسل بشكل واضح داخل الفقاعة النظيفة */}
+                {/* إظهار اسم المرسل بخط غامق داخل الفقاعة */}
                 <strong className={styles.messageSender}>
                   {msg.sender === 'monika' ? 'Monika' : 'You'}
                 </strong>
@@ -104,6 +106,7 @@ export default function Home() {
           )}
           <div ref={messagesEndRef} />
         </div>
+        
         <form className={styles.chatInputForm} onSubmit={handleSend}>
           <input
             type="text"
@@ -112,10 +115,11 @@ export default function Home() {
             placeholder="Ask Monika for a motivational boost or a new goal..."
             disabled={isLoading}
           />
-          <button type="submit" disabled={isLoading}>
+          <button type="submit" disabled={isLoading} className={styles.sendButton}>
             Send
           </button>
         </form>
+        
         <p className={styles.suggestionText}>
           **Try asking:** "I want to schedule a session next Tuesday about my career" or "I want to achieve a better work-life balance in 60 days."
         </p>
