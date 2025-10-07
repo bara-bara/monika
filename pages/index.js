@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import styles from '../styles/Home.module.css';
+import styles from '../styles/Home.module.css'; // استدعاء الأنماط الجديدة
 
 // Path to the Next.js API Route (assuming it's set up)
 const API_URL = '/api/monika-chat';
@@ -78,6 +78,7 @@ export default function Home() {
   return (
     <div className={styles.pageWrapper}>
       <div className={styles.chatContainer}>
+        {/* العنوان أصبح أكثر أناقة */}
         <h1 className={styles.header}>
           Monika AI Life Coach <span className={styles.headerIcon}>🧘‍♀️</span>
         </h1>
@@ -99,7 +100,7 @@ export default function Home() {
                   <div className={`${styles.messageBubble} ${styles.monikaBubble}`}>
                       <strong className={styles.messageSender}>Monika</strong>
                       <div className={styles.typingIndicator}>...typing...</div>
-                  </div>
+                </div>
               </div>
           )}
           <div ref={messagesEndRef} />
@@ -110,11 +111,13 @@ export default function Home() {
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Ask Monika for a motivational boost or a new goal..."
+            placeholder="Ask Monika..."
             disabled={isLoading}
           />
           <button type="submit" disabled={isLoading} className={styles.sendButton}>
-            Send
+            {/* استخدام أيقونة بدلاً من كلمة 'Send' على الهاتف لتقليد تطبيقات الدردشة */}
+            <span className={styles.sendText}>Send</span>
+            <span className={styles.sendIcon}>⬆️</span> 
           </button>
         </form>
         
