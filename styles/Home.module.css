@@ -13,26 +13,29 @@
 .chatContainer {
     background: #ffffff;
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(17, 24, 39, 0.1); /* ظل احترافي ناعم */
+    box-shadow: 0 10px 30px rgba(17, 24, 39, 0.1);
     width: 100%;
-    max-width: 800px; /* عرض أكبر ليكون أشبه بصفحة تطبيق */
-    height: 90vh; /* ارتفاع ثابت لسطح المكتب */
+    max-width: 800px;
+    height: 90vh;
     display: flex;
     flex-direction: column;
     padding: 30px;
 }
 
+/* HEADER: تحسين العنوان (اللون، الحجم، والتوسيط) */
 .header {
     text-align: center;
     color: #1e40af; /* أزرق غامق (براند) */
     margin-bottom: 30px;
-    font-size: 2.5em;
+    font-size: 2.2em; /* حجم مثالي */
     font-weight: 800;
+    letter-spacing: -0.5px; /* تباعد بسيط للحروف لمظهر أجمل */
     border-bottom: 1px solid #e0e7ff;
     padding-bottom: 15px;
 }
 .headerIcon {
     font-size: 0.9em;
+    margin-left: 5px;
 }
 
 /* CHAT AREA: منطقة الرسائل */
@@ -51,12 +54,11 @@
 .chatArea::-webkit-scrollbar-thumb { background-color: #c0c7d0; border-radius: 4px; }
 .chatArea::-webkit-scrollbar-track { background: #f4f7f9; }
 
-/* MESSAGE ROWS */
+/* MESSAGE ROWS & BUBBLES */
 .messageRow { display: flex; }
 .userRow { justify-content: flex-end; }
 .monikaRow { justify-content: flex-start; }
 
-/* MESSAGE BUBBLES: فقاعات جذابة */
 .messageBubble {
     padding: 15px 20px;
     border-radius: 12px;
@@ -75,30 +77,37 @@
     opacity: 0.8;
 }
 
-/* User Bubble */
 .userBubble {
-    background-color: #3b82f6; /* أزرق عصري */
+    background-color: #3b82f6;
     color: white;
     border-top-right-radius: 3px;
 }
-.userBubble .messageSender {
-    color: #e0f2fe;
-}
+.userBubble .messageSender { color: #e0f2fe; }
 
-/* Monika Bubble */
 .monikaBubble {
-    background-color: #f7f9fc; /* خلفية بيضاء ضبابية */
+    background-color: #f7f9fc;
     color: #1f2937;
     border: 1px solid #e5e7eb;
     border-top-left-radius: 3px;
 }
-.monikaBubble .messageSender {
-    color: #1e40af;
-}
+.monikaBubble .messageSender { color: #1e40af; }
 
-/* INPUT FORM: معالجة مشكلة الهاتف هنا */
+.codeBlock {
+    background-color: #eef2ff; /* لون جديد لكتل الكود */
+    color: #4b5563;
+    padding: 10px;
+    border-radius: 6px;
+    margin-top: 10px;
+    overflow-x: auto;
+    border: 1px solid #d1d5db;
+}
+.hintText { color: #9ca3af; font-size: 0.85em; margin-top: 5px; }
+.typingIndicator { font-style: italic; color: #4f46e5; }
+
+/* INPUT FORM: التركيز على تناسق الأزرار والحقول */
 .chatInputForm {
     display: flex;
+    align-items: center; /* لمحاذاة العناصر عمودياً في الوسط */
     gap: 10px;
     padding-top: 15px;
     border-top: 1px solid #e5e7eb;
@@ -106,9 +115,10 @@
 
 .chatInputForm input {
     flex-grow: 1;
-    padding: 15px 20px;
+    padding: 14px 20px; /* تقليل البادينج قليلاً ليتناسب مع الزر */
+    height: 50px; /* تحديد ارتفاع ثابت للتناسق */
     border: 1px solid #d1d5db;
-    border-radius: 30px;
+    border-radius: 25px; /* حواف أنعم */
     font-size: 1em;
     transition: border-color 0.2s, box-shadow 0.2s;
 }
@@ -120,26 +130,22 @@
 }
 
 .sendButton {
-    padding: 15px 30px;
+    padding: 14px 25px; /* مطابقة البادينج مع حقل الإدخال */
+    height: 50px; /* مطابقة الارتفاع */
     background-color: #3b82f6;
     color: white;
     border: none;
-    border-radius: 30px;
+    border-radius: 25px; /* حواف أنعم */
     cursor: pointer;
     font-size: 1em;
     font-weight: 600;
     transition: background-color 0.2s, transform 0.1s;
-    /* ضمان عرض الزر بشكل جيد */
-    min-width: 80px; 
+    min-width: 90px;
 }
 .sendButton:hover:not(:disabled) { background-color: #2563eb; }
 .sendButton:active:not(:disabled) { transform: scale(0.98); }
 .sendButton:disabled { background-color: #93c5fd; cursor: not-allowed; }
 
-/* TYPING INDICATOR */
-.typingIndicator { font-style: italic; color: #4f46e5; }
-
-/* SUGGESTION TEXT */
 .suggestionText {
     margin-top: 15px;
     font-size: 0.9em;
@@ -147,37 +153,32 @@
     text-align: center;
 }
 
-/* 📱 MOBILE RESPONSIVENESS: جعل الواجهة مثالية على الهاتف */
+/* 📱 MOBILE RESPONSIVENESS: تحسين العرض على الهاتف */
 @media (max-width: 768px) {
-    .pageWrapper {
-        padding: 0;
-        align-items: flex-start; /* تبدأ من الأعلى */
-        min-height: 100vh;
-    }
     .chatContainer {
-        height: 100vh; /* تأخذ كامل ارتفاع الشاشة */
-        border-radius: 0; /* إلغاء الحواف المستديرة */
-        box-shadow: none; /* إلغاء الظل */
-        padding: 20px 15px; /* تقليل الحشو */
+        border-radius: 0;
+        box-shadow: none;
+        padding: 20px 15px;
+        height: 100vh;
     }
     .header {
         font-size: 2em;
         margin-bottom: 20px;
     }
     .chatInputForm {
-        flex-direction: row; /* إبقاء العناصر في سطر واحد */
         gap: 8px;
+        padding-top: 10px;
     }
-    .chatInputForm input {
-        padding: 12px 18px;
+    .chatInputForm input, .sendButton {
+        height: 45px; /* تقليل ارتفاع العناصر على الهاتف */
+        padding: 10px 15px;
         font-size: 0.9em;
     }
     .sendButton {
-        padding: 12px 15px;
         min-width: 70px;
     }
     .messageBubble {
-        max-width: 95%; /* زيادة عرض الفقاعة */
+        max-width: 95%;
         font-size: 0.95em;
     }
 }
